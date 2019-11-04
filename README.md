@@ -1,34 +1,52 @@
-# datastax-examples-template
-This a sample template repo for contributions to the DataStax Examples platform.  This provides the minimum set of items needed to create a new example for submission to the DataStax Examples platform.
+# Concurrent Requests in Python
+This example shows how execute multiple concurrent requests asynchronously using the DataStax Apache Cassandra Python Driver.
 
-## Prerequisites
-* Git must be installed
-	* If it is not installed then follow the guide found [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
-	
+Contributor(s): [Alan Boudreault](https://github.com/aboudreault)
+
+## Objectives
+- How to limit async concurrent requests using the DataStax Cassandra Python Driver
+
+## Project Layout
+- [execute_async_with_queue.py](execute_async_with_queue.py): uses a Queue to cap the number of simultaneous requests triggered by the Python driver while executing asynchronously. 
+
+## How this works
+After running the docker command, there will be a running instance of the DataStax Distribution of Apache Cassandra.
+
+The Python program executes requests in a non-blocking, asynchronous manner while limiting the number of in-flight requests.
+
+## Setup & Running
+### Prerequisites
+- Docker installed and started: https://docs.docker.com/v17.09/engine/installation/
+
+### Setup
+Make sure Cassandra Python Driver is installed
+```
+pip install cassandra-driver
+```
+Clone this repository
+```
+git clone https://github.com/DataStax-Examples/concurrent-requests-python.git
+```
+
+Go to the directory
+```
+cd concurrent-requests-python
+```
+
+Start the DDAC docker container
+```
+docker run -e DS_LICENSE=accept --name ddac -p 127.0.0.1:9042:9042 -d datastax/ddac 
+```
 
 
-## Cloning this Repo to get started
-In a Terminal window.
-
-1) Create a bare clone of the repository.
-
-	git clone --bare https://github.com/bechbd/datastax-examples-template.git`
-
-2) Mirror-push to the new repository.
-
-	cd datastax-examples-template.git
-	git push --mirror https://github.com/bechbd/<new repo name>.git`
-
-3) Remove the temporary local repository you created in step 1.
-
-	cd ..
-	rm -rf datastax-examples-template.git
-
-
-
-4) Clone the newly created repository from step 3.
-
-	git clone https://github.com/bechbd/<new repo name>.git
-	
-You are now ready to work away in this duplicated repo
+### Running
  
+Run the Python program
+```
+python execute_async_with_queue.py
+```
+
+Expected Output
+```
+Finished executing 10000 queries with a concurrency level of 32 in 2.61 seconds.
+```
