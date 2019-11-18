@@ -1,10 +1,10 @@
 # Concurrent Requests in Python
-This example shows how execute multiple concurrent requests asynchronously using the DataStax Apache Cassandra Python Driver.
+This example shows how execute multiple concurrent requests asynchronously with Apache Cassandra™ using the [Python DataStax Driver](https://docs.datastax.com/en/developer/python-driver/latest).
 
-Contributor(s): [Alan Boudreault](https://github.com/aboudreault) - copied from [here](https://github.com/datastax/python-driver/tree/master/examples/concurrent_executions)
+Contributor(s): [Alan Boudreault](https://github.com/aboudreault) - derived from [here](https://github.com/datastax/python-driver/tree/master/examples/concurrent_executions)
 
 ## Objectives
-- How to limit async concurrent requests using the DataStax Cassandra Python Driver
+- How to limit async concurrent requests using the DataStax Python Driver
 
 ## Project Layout
 - [execute_async_with_queue.py](execute_async_with_queue.py): uses a Queue to cap the number of simultaneous requests triggered by the Python driver while executing asynchronously. 
